@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snow Calculator — Snow Day Predictor, Snowfall Converter & Roof Snow Load Tool | YourSnowCalculator.com</title>
+<meta name="description" content="Free snow calculator for all 50 states: predict snow day closures, convert snowfall accumulation between inches, cm, and liquid water equivalent, and check roof snow load safety limits by region.">
+<meta name="keywords" content="snow calculator, snow day calculator, snow day predictor, snowfall calculator, snow accumulation calculator, roof snow load calculator, will school be closed, snow to rain conversion, snow load capacity, winter storm calculator">
+<link rel="canonical" href="https://yoursnowcalculator.com/">
+
+<meta property="og:title" content="Snow Calculator — Snow Day Predictor, Snowfall Converter & Roof Load Tool">
+<meta property="og:description" content="Predict snow days, convert snowfall totals, and check roof snow load safety — free calculators for all 50 states.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yoursnowcalculator.com/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "YourSnowCalculator",
+  "url": "https://yoursnowcalculator.com/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online snow calculator to predict snow day school closures, convert snowfall accumulation, and calculate roof snow load by U.S. state."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate is a snow day calculator?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A snow day calculator gives a probability estimate based on forecast snowfall, temperature, timing, and your district's historical closure pattern. It is not official — only your school district or local government can confirm a closure, usually through a text alert, robocall, or website posting the night before or early morning of the storm." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much snow does it usually take to close schools?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It varies enormously by region. Districts in the Snow Belt (northern Michigan, upstate New York, Minnesota) may stay open through 6-8 inches because they have equipment and experience. Districts in the South or coastal areas unused to snow may close for 1-2 inches or even the forecast of snow, since they lack plows and salt trucks." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is snow water equivalent (SWE) and why does it matter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Snow water equivalent is the depth of liquid water you would get if you melted a given snow layer completely. It matters because snow density varies widely — a foot of light powder might contain half an inch of water, while a foot of wet, packed snow could contain 2 inches or more. SWE is the number engineers and hydrologists actually use for roof load and flood-runoff calculations, not raw snow depth." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much snow can a roof hold before it collapses?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most residential roofs in the U.S. are built to a ground snow load of 20-50 pounds per square foot depending on the region's building code, which roughly translates to 2-4 feet of fresh powder or 8-12 inches of wet, dense snow. Roof design load, roof pitch, snow density, and drifting all affect the real number for a specific building, so a calculator estimate should never replace a structural engineer's assessment for an older or flat roof." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does wet snow weigh more than powdery snow?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, significantly. Fresh powder can be as light as 3-5 pounds per cubic foot, while wet, compacted, or rain-soaked snow can weigh 15-20 pounds per cubic foot or more — roughly four to six times heavier for the same depth. This is why a 'light' 12-inch snowfall and a 'heavy, wet' 12-inch snowfall put very different loads on a roof." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert inches of snow to inches of rain?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The commonly used rule of thumb is a 10:1 ratio — 10 inches of average snow melts down to about 1 inch of rain. But the real ratio ranges from about 5:1 for wet, heavy snow up to 20:1 or higher for very dry powder in extreme cold, so the 10:1 rule is only a rough average, not a fixed conversion." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which U.S. states get the most snow?",
+      "acceptedAnswer": { "@type": "Answer", "text": "By average annual snowfall, the snowiest states are typically Alaska, Vermont, Maine, New Hampshire, and areas downwind of the Great Lakes in New York and Michigan due to lake-effect snow. Mountain regions in Colorado, Utah, and the Sierra Nevada in California also receive extremely heavy snowfall at elevation, even though their state-wide averages are lower because of lower-elevation deserts and valleys." }
+    },
+    {
+      "@type": "Question",
+      "name": "What time do schools usually announce snow day closures?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Most U.S. districts announce overnight-storm closures between 4:00 and 6:00 a.m., after transportation staff and administrators have assessed real road conditions. For storms arriving during the school day, districts may announce early dismissal several hours in advance to get students home before roads deteriorate." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a snow day get made up later in the school year?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In most U.S. states, yes — districts are required to meet a minimum number of instructional days or hours, so snow days are typically made up by extending the school year in June, converting a scheduled break day, or using built-in bank days reserved for weather. Some states now allow remote learning days to count instead of an in-person make-up day." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between a snow squall and a snowstorm?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A snow squall is a brief, intense burst of heavy snowfall and strong wind that dramatically reduces visibility for a short period, often 30 minutes or less, while a snowstorm describes a longer-duration system lasting many hours to multiple days. Squalls can cause serious whiteout conditions and highway pile-ups despite producing relatively little total accumulation." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I safely remove snow from my roof myself?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Light, fresh snow can often be safely removed from ground level using a roof rake on single-story homes, but climbing onto a snow- or ice-covered roof is a leading cause of fall injuries every winter and should generally be avoided. For heavy accumulation or any roof showing signs of stress, hiring a professional snow removal service or structural engineer is the safer option." }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --ink: #101826;
+    --slate: #1B2A4A;
+    --slate-light: #2C4270;
+    --ice: #FFFFFF;
+    --ice-dim: #F3F5F8;
+    --cyan: #4FA9D9;
+    --cyan-dim: #DCEEF9;
+    --amber: #E8A33D;
+    --line: rgba(27,42,74,0.12);
+    --font-display: 'Barlow Semi Condensed', Impact, 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--ice);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .display {
+    font-family: Arial-black(--font-display);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: var(--slate);
+    margin: 0;
+  }
+  a { color: var(--slate); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute; left: -999px; top: 0; background: var(--slate); color: #fff;
+    padding: 10px 16px; z-index: 100;
+  }
+  .skip-link:focus { left: 10px; top: 10px; }
+
+  /* Header */
+  header.site {
+    background: var(--slate);
+    color: var(--ice);
+    padding: 14px 0;
+    border-bottom: 3px solid var(--cyan);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: Arial-black(--font-display); font-weight: 800; font-size: 1.25rem; color: #fff; }
+  .brand .flake { color: var(--cyan); font-size: 1.4rem; }
+  nav.site-nav { display: flex; gap: 22px; font-size: 0.92rem; }
+  nav.site-nav a { color: var(--ice-dim); text-decoration: none; }
+  nav.site-nav a:hover { color: var(--cyan); }
+
+  /* Hero / Instrument panel */
+  .hero {
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(79,169,217,0.25), transparent 55%),
+      linear-gradient(180deg, var(--slate) 0%, #14203A 100%);
+    color: var(--ice);
+    padding: 56px 0 40px;
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+    line-height: 1.05;
+    max-width: 780px;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan);
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero p.lede {
+    color: var(--ice-dim);
+    max-width: 640px;
+    font-size: 1.08rem;
+    margin-top: 16px;
+  }
+
+  /* Instrument / calculator */
+  .instrument {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 24px 60px rgba(16,24,38,0.35);
+    margin-top: 34px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .tabs { display: flex; background: var(--ink); }
+  .tab-btn {
+    flex: 1;
+    padding: 15px 10px;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s ease;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.85); }
+  .tab-btn.active { color: #fff; border-bottom-color: var(--cyan); background: rgba(79,169,217,0.08); }
+  .tab-panel { display: none; padding: 28px; }
+  .tab-panel.active { display: block; }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 640px) { .field-row { grid-template-columns: 1fr; } }
+  label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--slate); margin-bottom: 6px; }
+  select, input[type=number] {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    background: var(--ice);
+    color: var(--ink);
+  }
+  select:focus, input:focus { outline: 2px solid var(--cyan); outline-offset: 1px; border-color: var(--cyan); }
+
+  .calc-btn {
+    background: var(--slate);
+    color: #fff;
+    border: none;
+    padding: 13px 26px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.15s ease;
+  }
+  .calc-btn:hover { background: var(--slate-light); }
+  .calc-btn:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+
+  .result-box {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--cyan-dim);
+    border-left: 5px solid var(--cyan);
+    display: none;
+  }
+  .result-box.show { display: block; }
+  .result-box.warn { background: #FBEED9; border-left-color: var(--amber); }
+  .result-box.danger { background: #FBE0DA; border-left-color: #C0442A; }
+  .result-headline { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--slate); }
+  .result-detail { margin-top: 8px; font-size: 0.95rem; color: var(--ink); }
+  .result-gauge { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--slate-light); margin-top: 10px; }
+
+  /* Content sections */
+  section.content { padding: 46px 0; }
+  section.content.alt { background: var(--ice-dim); }
+  section.content h2 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    margin-bottom: 18px;
+  }
+  section.content .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan); 
+    background: var(--slate);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .prose p { max-width: 760px; }
+  .prose ul, .prose ol { max-width: 760px; }
+
+  /* Reference table */
+  .ref-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 0.92rem; background: #fff; }
+  .ref-table th, .ref-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .ref-table th { background: var(--slate); color: #fff; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.03em; }
+  .ref-table tr:nth-child(even) { background: var(--ice-dim); }
+  .table-scroll { overflow-x: auto; border-radius: 6px; box-shadow: 0 1px 3px rgba(16,24,38,0.08); }
+
+  /* State grid */
+  .state-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .state-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+  .state-card strong { display: block; color: var(--slate); font-family: var(--font-display); font-size: 0.95rem; }
+  .state-card span { color: #5A6478; font-size: 0.78rem; }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--slate);
+    font-size: 1.02rem;
+  }
+  .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--cyan); flex-shrink: 0; margin-left: 12px; }
+  .faq-item.open .faq-q::after { content: '–'; }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+  .faq-item.open .faq-a { max-height: 500px; margin-top: 10px; }
+  .faq-a p { margin: 0; color: #3A4457; font-size: 0.95rem; max-width: 720px; }
+
+  /* Footer */
+  footer.site {
+    background: var(--slate);
+    color: var(--ice-dim);
+    padding: 34px 0 22px;
+    font-size: 0.85rem;
+    margin-top: 40px;
+  }
+  footer.site .foot-links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 14px; }
+  footer.site a { color: var(--ice-dim); text-decoration: none; }
+  footer.site a:hover { color: var(--cyan); }
+  footer.site .disclaimer { color: #7E8CA6; max-width: 780px; margin-top: 14px; font-size: 0.78rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0);
+  }
+</style>
+</head>
+<body>
+
+<a href="#calculator" class="skip-link">Skip to calculator</a>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand"><span class="flake">❄</span> YourSnowCalculator</div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#calculator">Calculator</a>
+      <a href="#state-data">State Data</a>
+      <a href="#guide">Guide</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Free · All 50 States · Updated for Winter 2026</div>
+    <h1>Snow Day Predictor, Snowfall Converter &amp; Roof Snow Load Calculator</h1>
+    <p class="lede">Three tools in one: estimate the odds your school or district closes for snow, convert snowfall between inches, centimeters, and liquid water equivalent, and check whether your roof is carrying a dangerous snow load — all calibrated by U.S. state and region.</p>
+
+    <div class="instrument" id="calculator">
+      <div class="tabs" role="tablist" aria-label="Calculator selector">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-snowday" id="tab-snowday" onclick="switchTab('snowday')">Snow Day Odds</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-accum" id="tab-accum" onclick="switchTab('accum')">Snowfall Converter</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-roof" id="tab-roof" onclick="switchTab('roof')">Roof Snow Load</button>
+      </div>
+
+      <!-- SNOW DAY CALCULATOR -->
+      <div class="tab-panel active" id="panel-snowday" role="tabpanel" aria-labelledby="tab-snowday">
+        <div class="field-row">
+          <div>
+            <label for="sd-state">State / Region</label>
+            <select id="sd-state">
+              <option value="high">Snow Belt (MN, ME, VT, NH, upstate NY, N. MI, WI, ND)</option>
+              <option value="mid" selected>Northern/Midwest (IL, OH, PA, MI, IN, MA, CT, IA, NE)</option>
+              <option value="low">Transitional (VA, KY, MO, KS, CO Front Range, UT)</option>
+              <option value="rare">Snow-Rare South (GA, NC, SC, TN, AL, TX, LA, AZ)</option>
+            </select>
+          </div>
+          <div>
+            <label for="sd-inches">Forecast Snowfall (inches)</label>
+            <input type="number" id="sd-inches" min="0" step="0.5" value="4" inputmode="decimal">
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label for="sd-temp">Forecast Low Temp (°F)</label>
+            <input type="number" id="sd-temp" step="1" value="20" inputmode="numeric">
+          </div>
+          <div>
+            <label for="sd-timing">Storm Timing</label>
+            <select id="sd-timing">
+              <option value="overnight" selected>Overnight into morning commute</option>
+              <option value="daytime">During school hours</option>
+              <option value="afterschool">After school lets out</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcSnowDay()">Calculate Snow Day Odds</button>
+        <div class="result-box" id="sd-result">
+          <div class="result-headline" id="sd-headline"></div>
+          <div class="result-detail" id="sd-detail"></div>
+          <div class="result-gauge" id="sd-gauge"></div>
+        </div>
+      </div>
+
+      <!-- SNOWFALL CONVERTER -->
+      <div class="tab-panel" id="panel-accum" role="tabpanel" aria-labelledby="tab-accum">
+        <div class="field-row">
+          <div>
+            <label for="ac-amount">Snowfall Amount</label>
+            <input type="number" id="ac-amount" min="0" step="0.1" value="6" inputmode="decimal">
+          </div>
+          <div>
+            <label for="ac-unit">Unit</label>
+            <select id="ac-unit">
+              <option value="in" selected>Inches</option>
+              <option value="cm">Centimeters</option>
+              <option value="mm">Millimeters</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label for="ac-density">Snow Type (density)</label>
+            <select id="ac-density">
+              <option value="0.05">Dry powder (very cold, light)</option>
+              <option value="0.10" selected>Average fresh snow</option>
+              <option value="0.20">Wet, packed snow</option>
+              <option value="0.30">Rain-soaked / slushy snow</option>
+            </select>
+          </div>
+          <div></div>
+        </div>
+        <button class="calc-btn" onclick="calcAccum()">Convert Snowfall</button>
+        <div class="result-box" id="ac-result">
+          <div class="result-headline" id="ac-headline"></div>
+          <div class="result-detail" id="ac-detail"></div>
+        </div>
+      </div>
+
+      <!-- ROOF SNOW LOAD -->
+      <div class="tab-panel" id="panel-roof" role="tabpanel" aria-labelledby="tab-roof">
+        <div class="field-row">
+          <div>
+            <label for="rf-depth">Snow Depth on Roof (inches)</label>
+            <input type="number" id="rf-depth" min="0" step="1" value="18" inputmode="decimal">
+          </div>
+          <div>
+            <label for="rf-density">Snow Condition</label>
+            <select id="rf-density">
+              <option value="7">Fresh powder (~7 lb/ft³)</option>
+              <option value="12" selected>Settled snow (~12 lb/ft³)</option>
+              <option value="18">Wet/packed snow (~18 lb/ft³)</option>
+              <option value="25">Ice-crusted / rain-soaked (~25 lb/ft³)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label for="rf-code">Region Building Code (ground snow load)</label>
+            <select id="rf-code">
+              <option value="20">Southern / mild states (~20 psf)</option>
+              <option value="30" selected>Mid-latitude states (~30 psf)</option>
+              <option value="50">Northern / mountain states (~50 psf)</option>
+              <option value="80">Extreme snow zones, e.g. Sierra/Rockies high elevation (~80+ psf)</option>
+            </select>
+          </div>
+          <div></div>
+        </div>
+        <button class="calc-btn" onclick="calcRoof()">Calculate Roof Load</button>
+        <div class="result-box" id="rf-result">
+          <div class="result-headline" id="rf-headline"></div>
+          <div class="result-detail" id="rf-detail"></div>
+          <div class="result-gauge" id="rf-gauge"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="guide">
+  <div class="wrap prose">
+    <span class="section-label">Snow Day Calculator Guide</span>
+    <h2>How Snow Day Predictions Actually Work</h2>
+    <p>Every winter, millions of parents and students across the United States refresh school district websites and local news apps hoping to see the words "closed" or "two-hour delay." A snow day calculator can't replace that official announcement, but it can give you a realistic, data-informed estimate of the odds — using the same core factors that superintendents themselves weigh when they make the call, usually between 4:00 and 5:30 a.m. on the day of a storm.</p>
+
+    <p>The main inputs that matter are forecast snowfall total, the timing of the storm relative to the morning bus routes, road temperature (not just air temperature — a 34°F day with wet roads can be more dangerous than a 15°F day with dry roads), and — critically — regional norms. This is where geography matters most: a forecast of 3 inches means something completely different in Buffalo, New York than it does in Atlanta, Georgia.</p>
+
+    <h3>Why the Same Snowfall Closes Some Schools and Not Others</h3>
+    <p>Districts in the Snow Belt states maintain large fleets of plows, pre-treat roads with brine before storms even arrive, and have bus drivers experienced in winter conditions, so they can often stay open through storms that would shut down an entire state further south. Districts in snow-rare regions frequently don't own a single snowplow, and a forecast of even an inch of accumulation — especially if it coincides with black ice on rural roads — is enough to cancel classes preemptively the night before.</p>
+
+    <div class="table-scroll">
+      <table class="ref-table">
+        <caption class="visually-hidden">Typical snowfall thresholds that trigger school closures by region</caption>
+        <thead>
+          <tr><th>Region Type</th><th>Typical Closure Threshold</th><th>Example States</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Snow Belt</td><td>6–10+ inches, or dangerous wind chill</td><td>Minnesota, Vermont, Maine, N. New York, N. Michigan</td></tr>
+          <tr><td>Northern / Midwest</td><td>3–6 inches, or ice accumulation</td><td>Illinois, Ohio, Pennsylvania, Massachusetts, Iowa</td></tr>
+          <tr><td>Transitional</td><td>1–3 inches, especially with ice</td><td>Virginia, Kentucky, Missouri, Kansas, Colorado Front Range</td></tr>
+          <tr><td>Snow-Rare South</td><td>Under 1 inch, or forecast alone</td><td>Georgia, North Carolina, Tennessee, Texas, Louisiana</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Snowfall Conversion: Inches, Centimeters, and Water Equivalent</h3>
+    <p>Weather reports mix units constantly — American broadcasts use inches, international and scientific sources use centimeters or millimeters, and hydrologists use snow water equivalent (SWE) to describe how much liquid water a snowpack actually contains. The snowfall converter above handles all three, and it accounts for snow density, which is the detail most simple unit converters get wrong. One inch of light, dry powder in Minnesota in January might contain a tenth of the water that one inch of heavy, wet spring snow in the Mid-Atlantic contains.</p>
+
+    <h3>Roof Snow Load: When Does Snow Become Dangerous?</h3>
+    <p>Roof collapses from snow load are a genuine, recurring risk every winter, particularly for flat or low-slope roofs, older barns and outbuildings, and structures that have already accumulated multiple storms without melting or shedding snow between them. Building codes assign every region a "ground snow load" design value in pounds per square foot (psf), and structural engineers use that value, along with roof geometry, to determine how much a roof should be able to bear. The calculator above gives a rough estimate of current load versus typical design capacity — it is not a substitute for a professional structural inspection, especially on older buildings, flat roofs, or after several storms have piled up without a thaw.</p>
+  </div>
+</section>
+
+<section class="content alt" id="state-data">
+  <div class="wrap">
+    <span class="section-label">Geo Data</span>
+    <h2>Snow Day Calculator by State: Regional Snow Patterns</h2>
+    <p class="prose" style="max-width:760px;">Snow day likelihood, average annual snowfall, and typical school-closure culture vary dramatically across the country. The table below covers all 50 states with approximate statewide average annual snowfall and typical closure tendency — use it alongside the calculator above to sanity-check your result. State-wide averages can understate reality in mountain and lake-effect zones, and overstate it in southern coastal areas.</p>
+    <div class="table-scroll">
+      <table class="ref-table">
+        <caption class="visually-hidden">Average annual snowfall and school closure tendency by U.S. state</caption>
+        <thead><tr><th>State</th><th>Approx. Avg. Annual Snowfall</th><th>School Closure Tendency</th></tr></thead>
+        <tbody>
+          <tr><td>Alabama</td><td>~1 in</td><td>Very low — ice, not snow depth, drives closures</td></tr>
+          <tr><td>Alaska</td><td>~80 in (statewide varies widely)</td><td>Very high — extreme cold and darkness matter more than depth</td></tr>
+          <tr><td>Arizona</td><td>~1 in lowlands, 100+ in at elevation</td><td>Very low in valleys; high near ski regions</td></tr>
+          <tr><td>Arkansas</td><td>~5 in</td><td>Low — ice storms are the main trigger</td></tr>
+          <tr><td>California</td><td>~1 in coastal, 400+ in Sierra</td><td>Very low statewide; extreme tolerance at Sierra elevation</td></tr>
+          <tr><td>Colorado</td><td>~67 in statewide</td><td>Moderate on Front Range; high in mountain districts</td></tr>
+          <tr><td>Connecticut</td><td>~36 in</td><td>Moderate — nor'easters are the main driver</td></tr>
+          <tr><td>Delaware</td><td>~14 in</td><td>Low-moderate</td></tr>
+          <tr><td>Florida</td><td>~0 in</td><td>Not applicable — closures don't occur for snow</td></tr>
+          <tr><td>Georgia</td><td>~1 in</td><td>Very low — even 1 inch can close schools statewide</td></tr>
+          <tr><td>Hawaii</td><td>~0 in (summit only)</td><td>Not applicable</td></tr>
+          <tr><td>Idaho</td><td>~35 in</td><td>Moderate-high, especially rural districts</td></tr>
+          <tr><td>Illinois</td><td>~19 in (much higher north)</td><td>Moderate — 4+ inches or ice typically needed</td></tr>
+          <tr><td>Indiana</td><td>~24 in</td><td>Moderate; rural districts close more readily</td></tr>
+          <tr><td>Iowa</td><td>~30 in</td><td>Moderate — wind/drifting matter as much as totals</td></tr>
+          <tr><td>Kansas</td><td>~15 in</td><td>Low-moderate — wind-driven snow and rural roads matter</td></tr>
+          <tr><td>Kentucky</td><td>~13 in</td><td>Low — hilly terrain and ice are key factors</td></tr>
+          <tr><td>Louisiana</td><td>&lt;1 in</td><td>Very low — rare events close schools statewide</td></tr>
+          <tr><td>Maine</td><td>~65 in</td><td>High — rural bus routes are the limiting factor</td></tr>
+          <tr><td>Maryland</td><td>~15 in</td><td>Low-moderate</td></tr>
+          <tr><td>Massachusetts</td><td>~40 in</td><td>Moderate — nor'easters are the main closure driver</td></tr>
+          <tr><td>Michigan</td><td>~55 in (much higher in the north/UP)</td><td>High — lake-effect snow is routine</td></tr>
+          <tr><td>Minnesota</td><td>~50 in</td><td>High — wind chill often matters more than snowfall</td></tr>
+          <tr><td>Mississippi</td><td>~1 in</td><td>Very low</td></tr>
+          <tr><td>Missouri</td><td>~15 in</td><td>Low — ice storms close schools more than snow</td></tr>
+          <tr><td>Montana</td><td>~45 in</td><td>Moderate-high; rural distances are a major factor</td></tr>
+          <tr><td>Nebraska</td><td>~25 in</td><td>Moderate</td></tr>
+          <tr><td>Nevada</td><td>~15 in statewide, much higher at Tahoe elevation</td><td>Low in Las Vegas area; high near Sierra</td></tr>
+          <tr><td>New Hampshire</td><td>~60 in</td><td>High — well-equipped districts</td></tr>
+          <tr><td>New Jersey</td><td>~20 in</td><td>Moderate</td></tr>
+          <tr><td>New Mexico</td><td>~10 in statewide</td><td>Low in lowlands; higher near mountains</td></tr>
+          <tr><td>New York</td><td>~40 in statewide, 100+ in lake-effect belts</td><td>High upstate/lake-effect zones; moderate downstate</td></tr>
+          <tr><td>North Carolina</td><td>~5 in</td><td>Very low — forecast alone often triggers closure</td></tr>
+          <tr><td>North Dakota</td><td>~35 in</td><td>High — blowing snow/visibility is the main trigger</td></tr>
+          <tr><td>Ohio</td><td>~25 in</td><td>Moderate; varies significantly rural vs. urban</td></tr>
+          <tr><td>Oklahoma</td><td>~7 in</td><td>Low — ice is the primary concern</td></tr>
+          <tr><td>Oregon</td><td>~5 in valleys, much higher in Cascades</td><td>Low in Willamette Valley; high in mountain districts</td></tr>
+          <tr><td>Pennsylvania</td><td>~35 in</td><td>Moderate — hilly rural roads lower the threshold</td></tr>
+          <tr><td>Rhode Island</td><td>~30 in</td><td>Moderate</td></tr>
+          <tr><td>South Carolina</td><td>~1 in</td><td>Very low — minimal winter equipment</td></tr>
+          <tr><td>South Dakota</td><td>~35 in</td><td>Moderate-high; wind and drifting are key factors</td></tr>
+          <tr><td>Tennessee</td><td>~5 in</td><td>Very low — hilly roads amplify risk</td></tr>
+          <tr><td>Texas</td><td>&lt;1 in statewide</td><td>Very low — infrastructure not built for ice/snow</td></tr>
+          <tr><td>Utah</td><td>~35 in valleys, 300+ in at ski elevations</td><td>Moderate in valleys; very high tolerance near resorts</td></tr>
+          <tr><td>Vermont</td><td>~70 in</td><td>High — closures mainly from ice or extreme cold</td></tr>
+          <tr><td>Virginia</td><td>~10 in</td><td>Low — ice is the biggest closure trigger</td></tr>
+          <tr><td>Washington</td><td>~5 in lowlands, 400+ in Cascades</td><td>Low in Seattle area despite rainy climate; high near mountain passes</td></tr>
+          <tr><td>West Virginia</td><td>~30 in</td><td>Moderate-high — mountainous rural roads</td></tr>
+          <tr><td>Wisconsin</td><td>~45 in</td><td>High — consistent plowing infrastructure</td></tr>
+          <tr><td>Wyoming</td><td>~40 in statewide, much higher in mountains</td><td>Moderate-high; wind is a major factor</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.85rem; color:#5A6478; margin-top:14px;">Figures above are approximate statewide averages for general reference. Local conditions — elevation, lake-effect bands, and coastal vs. inland location — can cause dramatic variation within a single state.</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap prose">
+    <span class="section-label">Terminology</span>
+    <h2>Snow &amp; Winter Weather Glossary</h2>
+    <p>Understanding the terms forecasters and school districts use makes it easier to interpret both the raw forecast and this calculator's output.</p>
+    <ul>
+      <li><strong>Snow water equivalent (SWE):</strong> the depth of liquid water contained in a layer of snow if it were fully melted. Used by hydrologists and engineers because raw snow depth alone doesn't indicate weight or runoff potential.</li>
+      <li><strong>Ground snow load:</strong> a building-code design value, in pounds per square foot (psf), representing the maximum expected snow load on the ground in a given region over a defined return period (commonly 50 years).</li>
+      <li><strong>Roof snow load:</strong> the actual load a roof structure is designed or expected to bear, typically calculated as a percentage of ground snow load adjusted for roof slope, exposure, and thermal factors.</li>
+      <li><strong>Lake-effect snow:</strong> highly localized, often intense snowfall generated when cold air moves over relatively warmer lake water (most notably the Great Lakes), picking up moisture that is then dumped as snow on the downwind shore.</li>
+      <li><strong>Snow density:</strong> the mass of snow per unit volume, commonly measured in pounds per cubic foot. Fresh powder is far less dense than wind-packed, wet, or partially melted and refrozen snow.</li>
+      <li><strong>Two-hour delay:</strong> a partial closure where school start time is pushed back, typically to allow road crews more time to clear and treat roads, or to let morning temperatures rise before buses run.</li>
+      <li><strong>Wind chill:</strong> the perceived temperature accounting for wind speed's cooling effect on exposed skin — a major factor in closure decisions independent of snowfall amount, especially in the Upper Midwest and Northern Plains.</li>
+      <li><strong>Black ice:</strong> a thin, transparent layer of ice on pavement that is difficult to see and often more dangerous than visible snow accumulation, frequently the deciding factor in closures even with minimal snowfall.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="content alt">
+  <div class="wrap prose">
+    <span class="section-label">How Closures Are Decided</span>
+    <h2>Who Actually Decides School Closures, and How</h2>
+    <p>School closure decisions in the U.S. are made locally, almost always by the superintendent of an individual school district, not by state or federal authorities. Superintendents typically wake in the early morning hours during an active or overnight storm — commonly between 4:00 and 5:00 a.m. — and personally assess road conditions, sometimes by driving key rural routes themselves, before making the call.</p>
+    <p>The decision draws on several inputs beyond the forecast itself: real-time reports from transportation directors and bus garage staff, road temperature readings from public works departments, staff and bus-driver availability, and increasingly, decisions already announced by neighboring districts, since large regional gaps in closures can create logistical and safety complications. Districts serving large rural areas with long bus routes on unpaved or hilly roads generally have a lower threshold for closing than urban and suburban districts with shorter, plowed routes — even within the same state.</p>
+    <p>Once the decision is made, districts typically notify families through automated call/text alert systems, their website and social media, and local TV and radio station "closings and delays" segments. This calculator estimates the odds behind that decision; it does not have access to a specific district's internal call.</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap prose">
+    <span class="section-label">Historical Context</span>
+    <h2>Notable Snow Events and Records</h2>
+    <p>Historical extremes help calibrate what "a lot of snow" really means. Some of the most significant U.S. snow events include the Great Blizzard of 1888, which paralyzed the Northeast with drifts over 40 feet in places; the Storm of the Century in March 1993, which dropped snow from the Gulf Coast to Maine in a single system; and recurring multi-day lake-effect events near Buffalo, New York, which have produced localized totals exceeding 6 feet within 48 hours.</p>
+    <p>On the roof-load side, some of the most damaging structural collapse events in U.S. history followed not single massive storms but a series of moderate snowfalls in quick succession without a thaw in between — a reminder that cumulative, undrained snow load can be more dangerous than any single storm's headline total. This is why the roof load calculator on this page asks for current total depth rather than just the most recent storm's snowfall.</p>
+  </div>
+</section>
+
+<section class="content">
+  <div class="wrap prose">
+    <span class="section-label">Roof Safety</span>
+    <h2>Roof Snow Load Reference by Building Code Region</h2>
+    <p>Ground snow load design values are set by local building codes (based on ASCE 7 standards in the U.S.) and vary from as low as 10-20 psf in the Deep South to well over 100 psf in high-elevation mountain zones of Colorado, Utah, and the Sierra Nevada. Roof snow load is typically calculated as a fraction of ground load — often around 70% for a typical sloped residential roof, though flat roofs, valleys, and areas prone to drifting can see significantly higher local loads.</p>
+    <div class="table-scroll">
+      <table class="ref-table">
+        <thead><tr><th>Region</th><th>Typical Ground Snow Load</th><th>Approx. Safe Fresh Snow Depth*</th></tr></thead>
+        <tbody>
+          <tr><td>Southern / mild-winter states</td><td>~20 psf</td><td>~3–4 ft of fresh powder</td></tr>
+          <tr><td>Mid-latitude / Midwest &amp; Northeast</td><td>~30 psf</td><td>~4–5 ft of fresh powder</td></tr>
+          <tr><td>Northern / mountain valley states</td><td>~50 psf</td><td>~7–8 ft of fresh powder</td></tr>
+          <tr><td>Extreme snow zones (high elevation)</td><td>80+ psf</td><td>11+ ft of fresh powder</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.85rem; color:#5A6478;">*Estimates for fresh, light powder only. Wet or compacted snow reaches these load limits at a fraction of the depth — always use the roof calculator above with your actual snow condition, and consult a structural engineer for any roof showing sagging, creaking, or cracking.</p>
+  </div>
+</section>
+
+<section class="content alt" id="faq">
+  <div class="wrap">
+    <span class="section-label">FAQ</span>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How accurate is a snow day calculator?</div>
+        <div class="faq-a"><p>A snow day calculator gives a probability estimate based on forecast snowfall, temperature, timing, and your district's historical closure pattern. It is not official — only your school district or local government can confirm a closure, usually announced the night before or early morning of the storm via text alert, robocall, or website posting.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How much snow does it usually take to close schools?</div>
+        <div class="faq-a"><p>It varies enormously by region. Snow Belt districts (northern Michigan, upstate New York, Minnesota, Vermont) may stay open through 6-8+ inches because they have equipment and experience. Districts in the South or areas unused to snow may close for 1-2 inches, or even just the forecast of snow, since they lack plows and salt trucks.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What is snow water equivalent (SWE) and why does it matter?</div>
+        <div class="faq-a"><p>Snow water equivalent is the depth of liquid water you'd get if you melted a given layer of snow completely. It matters because snow density varies widely — a foot of light powder might hold half an inch of water, while a foot of wet, packed snow could hold two inches or more. SWE is the figure engineers and hydrologists actually rely on for roof-load and runoff calculations, not raw snow depth.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How much snow can a roof hold before it collapses?</div>
+        <div class="faq-a"><p>Most U.S. residential roofs are built to a ground snow load of 20-50 psf depending on regional building code, which roughly translates to 2-4 feet of fresh powder or 8-12 inches of dense, wet snow. Roof pitch, snow density, drifting, and the building's age and design all affect the real number, so a calculator estimate should never replace a structural engineer's in-person assessment, especially for flat or older roofs.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does wet snow weigh more than powdery snow?</div>
+        <div class="faq-a"><p>Yes, significantly. Fresh powder can weigh as little as 3-5 lb per cubic foot, while wet, compacted, or rain-soaked snow can weigh 15-20+ lb per cubic foot — four to six times heavier for the same depth. That's why a "light" 12-inch snowfall and a "heavy, wet" 12-inch snowfall put very different loads on the same roof.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I convert inches of snow to inches of rain?</div>
+        <div class="faq-a"><p>The commonly cited rule of thumb is a 10:1 ratio — 10 inches of average snow melts to roughly 1 inch of rain. In reality, the ratio ranges from about 5:1 for wet, heavy snow up to 20:1 or more for very dry powder in extreme cold, so 10:1 is only a rough average, not a fixed conversion.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Which U.S. states get the most snow?</div>
+        <div class="faq-a"><p>By average annual snowfall, the snowiest states are typically Alaska, Vermont, Maine, New Hampshire, and Great Lakes-adjacent areas of New York and Michigan due to lake-effect snow. Mountain regions in Colorado, Utah, and California's Sierra Nevada also get extremely heavy snowfall at elevation, even though state-wide averages there are lower because of lower-elevation deserts and valleys.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do two-hour delays count differently than full snow days in this calculator?</div>
+        <div class="faq-a"><p>The calculator above estimates overall closure likelihood rather than distinguishing delays from full closures, since districts weigh that decision differently. Generally, marginal snow-day conditions (light accumulation, improving conditions by mid-morning) push districts toward a delay rather than a full closure, while heavy overnight snowfall or dangerous morning temperatures push toward a full closure.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Why did my school close for less snow than a calculator predicted?</div>
+        <div class="faq-a"><p>Superintendents weigh factors a calculator can't see: staff availability, bus driver call-offs, specific rural road conditions, ice underneath the snow, and even neighboring district decisions. Calculators are a helpful estimate, not a guarantee, precisely because these hyper-local, day-of factors can outweigh the raw snowfall number.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What time do schools usually announce snow day closures?</div>
+        <div class="faq-a"><p>Most U.S. districts announce overnight-storm closures between 4:00 and 6:00 a.m., after transportation staff and administrators have assessed real road conditions. For storms arriving during the school day, districts may announce early dismissal several hours in advance to get students home before roads deteriorate.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does a snow day get made up later in the school year?</div>
+        <div class="faq-a"><p>In most U.S. states, yes — districts are required to meet a minimum number of instructional days or hours, so snow days are typically made up by extending the school year in June, converting a scheduled break day, or using built-in "bank" days already reserved in the calendar for weather. Some states have relaxed this requirement in recent years by allowing remote learning days to count instead of an in-person make-up day.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What's the difference between a snow squall and a snowstorm?</div>
+        <div class="faq-a"><p>A snow squall is a brief, intense burst of heavy snowfall and strong wind that dramatically reduces visibility for a short period — often 30 minutes or less — while a snowstorm or winter storm describes a longer-duration system that can last many hours to multiple days. Squalls can cause serious whiteout conditions and highway pile-ups despite producing relatively little total accumulation.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How is snow load measured on an existing roof?</div>
+        <div class="faq-a"><p>There's no single instrument that measures roof load directly in a typical home; it's estimated from snow depth and density, which is why the calculator on this page asks for both. Professional structural assessments may involve a physical inspection for visible sagging, cracking sounds, doors or windows that suddenly stick, and — for flat commercial roofs — direct measurement of accumulated snow and ice at multiple points.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I safely remove snow from my roof myself?</div>
+        <div class="faq-a"><p>Light, fresh snow can often be safely removed from ground level using a roof rake on single-story homes, but climbing onto a snow- or ice-covered roof is a leading cause of fall injuries every winter and should generally be avoided. For heavy accumulation, ice dams, or any roof showing signs of stress, hiring a professional snow removal service or structural engineer is the safer option.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#state-data">State Data</a>
+      <a href="#guide">Guide</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>© 2026 YourSnowCalculator.com — Free snow day, snowfall conversion, and roof load calculators for all 50 states.</div>
+    <div class="disclaimer">Disclaimer: All results are estimates for informational and educational purposes only. Snow day predictions are not official — always confirm closures through your school district. Roof snow load estimates are not a substitute for a professional structural engineer's assessment, particularly for older, flat, or previously damaged roofs.</div>
+  </div>
+</footer>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('tab-' + name).setAttribute('aria-selected','true');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+function calcSnowDay() {
+  const region = document.getElementById('sd-state').value;
+  const inches = parseFloat(document.getElementById('sd-inches').value) || 0;
+  const temp = parseFloat(document.getElementById('sd-temp').value);
+  const timing = document.getElementById('sd-timing').value;
+
+  const thresholds = { high: 7, mid: 4, low: 2, rare: 0.75 };
+  const threshold = thresholds[region];
+  let score = (inches / threshold) * 60;
+
+  if (temp <= 5) score += 20;
+  else if (temp <= 15) score += 10;
+
+  if (timing === 'overnight') score += 15;
+  else if (timing === 'afterschool') score -= 15;
+
+  score = Math.max(2, Math.min(97, Math.round(score)));
+
+  const box = document.getElementById('sd-result');
+  const head = document.getElementById('sd-headline');
+  const detail = document.getElementById('sd-detail');
+  const gauge = document.getElementById('sd-gauge');
+
+  box.classList.remove('warn','danger');
+  let label, cls;
+  if (score >= 70) { label = 'High likelihood of closure'; cls = 'warn'; }
+  else if (score >= 35) { label = 'Possible delay or closure'; cls = ''; }
+  else { label = 'Low likelihood of closure'; cls = ''; }
+  if (cls) box.classList.add(cls);
+
+  head.textContent = score + '% — ' + label;
+  detail.textContent = `Based on ${inches}" forecast in a ${ {high:'Snow Belt',mid:'Northern/Midwest',low:'Transitional',rare:'Snow-Rare Southern'}[region] } region, with a low of ${isNaN(temp)?'—':temp+'°F'}, timed ${timing === 'overnight' ? 'overnight into the morning commute' : timing === 'daytime' ? 'during school hours' : 'after school lets out'}. This is an estimate only — always confirm with your district.`;
+  gauge.textContent = `SCORE: ${'█'.repeat(Math.round(score/5))}${'░'.repeat(20-Math.round(score/5))} ${score}/100`;
+
+  box.classList.add('show');
+}
+
+function calcAccum() {
+  const amount = parseFloat(document.getElementById('ac-amount').value) || 0;
+  const unit = document.getElementById('ac-unit').value;
+  const density = parseFloat(document.getElementById('ac-density').value);
+
+  let inches;
+  if (unit === 'in') inches = amount;
+  else if (unit === 'cm') inches = amount / 2.54;
+  else inches = amount / 25.4;
+
+  const cm = inches * 2.54;
+  const mm = inches * 25.4;
+  const sweInches = inches * density;
+  const sweMm = sweInches * 25.4;
+
+  const box = document.getElementById('ac-result');
+  document.getElementById('ac-headline').textContent = `${inches.toFixed(1)}" = ${cm.toFixed(1)} cm = ${mm.toFixed(0)} mm`;
+  document.getElementById('ac-detail').textContent = `Liquid water equivalent: approximately ${sweInches.toFixed(2)}" (${sweMm.toFixed(1)} mm) of rain, based on the selected snow density. Density is the single biggest factor in how much water a given snow depth actually represents.`;
+  box.classList.add('show');
+}
+
+function calcRoof() {
+  const depthIn = parseFloat(document.getElementById('rf-depth').value) || 0;
+  const densityLb = parseFloat(document.getElementById('rf-density').value);
+  const codePsf = parseFloat(document.getElementById('rf-code').value);
+
+  const depthFt = depthIn / 12;
+  const loadPsf = depthFt * densityLb;
+  const roofDesignLoad = codePsf * 0.7; // approx sloped-roof fraction of ground load
+  const pctOfCapacity = Math.round((loadPsf / roofDesignLoad) * 100);
+
+  const box = document.getElementById('rf-result');
+  const head = document.getElementById('rf-headline');
+  const detail = document.getElementById('rf-detail');
+  const gauge = document.getElementById('rf-gauge');
+
+  box.classList.remove('warn','danger');
+  let cls = '';
+  if (pctOfCapacity >= 100) cls = 'danger';
+  else if (pctOfCapacity >= 70) cls = 'warn';
+  if (cls) box.classList.add(cls);
+
+  head.textContent = `${loadPsf.toFixed(1)} lb/ft² on your roof — ${pctOfCapacity}% of estimated design capacity`;
+  detail.textContent = pctOfCapacity >= 100
+    ? 'This estimate exceeds typical design capacity for your region. Consider safe snow removal or a professional structural inspection — do not walk on the roof yourself.'
+    : pctOfCapacity >= 70
+    ? 'This is approaching a significant portion of typical design capacity, especially if more snow is forecast before this melts or is removed.'
+    : 'This is a manageable load for typical construction in your region, based on the estimate above.';
+  gauge.textContent = `LOAD: ${'█'.repeat(Math.min(20,Math.round(pctOfCapacity/5)))}${'░'.repeat(Math.max(0,20-Math.round(pctOfCapacity/5)))} ${pctOfCapacity}% of capacity`;
+
+  box.classList.add('show');
+}
+</script>
+
+</body>
+</html>
